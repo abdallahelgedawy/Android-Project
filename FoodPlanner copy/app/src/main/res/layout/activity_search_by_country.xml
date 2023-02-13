@@ -16,16 +16,17 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/frame"
-        android:layout_width="406dp"
-        android:layout_height="279dp"
+        android:layout_width="397dp"
+        android:layout_height="207dp"
         android:layout_marginTop="40dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/country_rec"
             android:layout_width="387dp"
-            android:layout_height="262dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </androidx.cardview.widget.CardView>
 

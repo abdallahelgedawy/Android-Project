@@ -1,21 +1,20 @@
 package com.example.myapp.search.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.myapp.R;
 import com.example.myapp.search.category.view.CategoryMealsActivity;
+import com.example.myapp.search.searchbycountry.view.CountryMealsActivity;
 import com.example.myapp.search.searchbycountry.view.Search_by_country_Activity;
 import com.example.myapp.search.byIngredients.view.IngredientsActivity;
 
 public class SearchActivity extends AppCompatActivity {
-Button btn1;
-Button btn2;
-Button btn3;
+    Button btn1;
+    Button btn2;
+    Button btn3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +25,7 @@ Button btn3;
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(com.example.myapp.search.view.SearchActivity.this, Search_by_country_Activity.class);
+                Intent intent = new Intent(com.example.myapp.search.view.SearchActivity.this, CountryMealsActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,11 +1,14 @@
 package com.example.myapp.dailyMeal.presenter;
 
-import com.example.myapp.model.DailyMeals;
 import com.example.myapp.model.Meals;
-import com.example.myapp.model.RandomMeals;
+
+import java.util.List;
 
 public interface DailyMealPresenterInterface {
 
-  //  public void addToFav(DailyMeals meals);
+   public void addToFav(Meals meals);
     public void getMeal();
+  public void getAllMeal();
+  public void showFavData (List<Meals> meals);
+ // public void deleteProduct(Meals meals);
 }

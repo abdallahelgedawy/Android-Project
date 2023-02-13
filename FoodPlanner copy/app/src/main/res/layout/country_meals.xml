@@ -11,11 +11,11 @@
     tools:context=".dailyMeal.view.DailyMealActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/img_search"
             android:layout_width="238dp"
             android:layout_height="138dp"
             android:layout_marginTop="98dp"
@@ -25,14 +25,14 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="62dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            app:layout_constraintTop_toBottomOf="@+id/img_search" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -40,10 +40,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="53dp"
+            android:contentDescription="@android:string/autofill"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            android:contentDescription="@android:string/autofill"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_search" />
 
         <ToggleButton
             android:id="@+id/toggleButton"

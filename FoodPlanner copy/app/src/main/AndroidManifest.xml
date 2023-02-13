@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/breakfast"
+
         android:label="Our Food App"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
@@ -66,6 +66,11 @@
         </activity>
         <activity android:name=".registration.view.RegistrationActivity" />
         <activity android:name=".login.view.LoginActivity" />
+        <activity
+            android:name=".WelcomActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

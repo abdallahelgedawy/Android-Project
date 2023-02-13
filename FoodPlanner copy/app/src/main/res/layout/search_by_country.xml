@@ -7,29 +7,36 @@
     android:minWidth="48dp"
     android:minHeight="48dp"
     app:cardCornerRadius="30dp"
-    tools:context=".dailyMeal.view.DailyMealActivity">
+    tools:context=".dailyMeal.view.DailyMealActivity"
+    app:cardElevation="10dp"
+    app:strokeWidth="10dp"
+    app:strokeColor="@color/purple_700"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_country"
         android:layout_width="match_parent"
-        android:layout_height="212dp">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/img_search"
             android:layout_width="106dp"
             android:layout_height="70dp"
-            android:layout_marginTop="92dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="73dp"
             android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.589"

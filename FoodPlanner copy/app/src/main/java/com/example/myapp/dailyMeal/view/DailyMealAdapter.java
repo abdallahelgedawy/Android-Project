@@ -3,14 +3,11 @@ package com.example.myapp.dailyMeal.view;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp.R;
-import com.example.myapp.model.DailyMeals;
 import com.example.myapp.model.Meals;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -18,26 +15,24 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.myapp.model.RandomMeals;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.viewHolder> {
     private Context context;
     private ArrayList<Meals> meals;
-
+     private OnClickFavorite listener;
     private  static  boolean clicked = false;
 
 
 
 
-    public DailyMealAdapter(Context context) {
+    public DailyMealAdapter(Context context ,OnClickFavorite listener) {
         this.context = context;
+        this.listener=listener;
         this.meals = new ArrayList<>();
     }
 
@@ -60,6 +55,8 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
+               listener.onClick(meal);
+
                if (!clicked) {
                    holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
                    clicked = true;
@@ -69,7 +66,6 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
               else if(clicked){
                        holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
                        clicked = false;
-
                    }
                }
 
@@ -95,8 +91,8 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-         title = itemView.findViewById(R.id.textView3);
-         img = itemView.findViewById(R.id.imageView5);
+         title = itemView.findViewById(R.id.text_search);
+         img = itemView.findViewById(R.id.img_search);
          fav = itemView.findViewById(R.id.btn_fav);
          days = itemView.findViewById(R.id.spinner);
         }
