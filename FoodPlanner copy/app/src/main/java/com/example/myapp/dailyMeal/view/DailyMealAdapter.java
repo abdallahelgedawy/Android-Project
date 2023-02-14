@@ -91,8 +91,8 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-         title = itemView.findViewById(R.id.text_cat);
-         img = itemView.findViewById(R.id.img);
+         title = itemView.findViewById(R.id.text_search);
+         img = itemView.findViewById(R.id.img_search);
          fav = itemView.findViewById(R.id.btn_fav);
          days = itemView.findViewById(R.id.spinner);
         }

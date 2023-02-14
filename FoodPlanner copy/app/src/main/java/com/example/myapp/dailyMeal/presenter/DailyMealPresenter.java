@@ -56,9 +56,10 @@ public class DailyMealPresenter implements DailyMealPresenterInterface , Network
 
 
     @Override
-    public void onSuccessResult(ArrayList<Meals> meals) {
+    public ArrayList<Meals> onSuccessResult(ArrayList<Meals> meals) {
         Log.i("TAG", "onSuccessResult: " + "succes");
         dailyMealsViewInterface.showData(meals);
+        return meals;
     }
 
     @Override

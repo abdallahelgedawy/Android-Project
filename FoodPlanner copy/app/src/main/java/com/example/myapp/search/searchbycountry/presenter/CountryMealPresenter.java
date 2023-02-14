@@ -23,8 +23,9 @@ public class CountryMealPresenter implements CountryMealPresenterInterface, Netw
     }
 
     @Override
-    public void onSuccessResult(ArrayList<Meals> meals) {
+    public ArrayList<Meals> onSuccessResult(ArrayList<Meals> meals) {
         countryMealsViewInterface.showCountryData(meals);
+        return meals;
     }
 
     @Override

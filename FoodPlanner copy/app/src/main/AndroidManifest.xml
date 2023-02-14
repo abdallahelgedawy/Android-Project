@@ -17,6 +17,12 @@
             android:name=".planMeals.view.planActivity"
             android:exported="false" />
         <activity
+            android:name=".search.byIngredients.view.Detailed_Ingredients"
+            android:exported="false" />
+        <activity
+            android:name=".search.category.view.Detailed_Category"
+            android:exported="false" />
+        <activity
             android:name=".search.searchbycountry.view.Detailed_country"
             android:exported="false" />
         <activity

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
 import com.example.myapp.db.LocalSource;
-import com.example.myapp.network.CategoryDelegate;
 import com.example.myapp.network.MealsClient;
 import com.example.myapp.network.NetworkDelegate;
 import com.example.myapp.network.RemoteSource;
@@ -47,26 +46,6 @@ public class Repository implements RepositoryInterface  {
     public void getCountryMeal(NetworkDelegate networkDelegate, String name) {
         remoteSource.getCountryMeal(networkDelegate,name);
 
-    }
-
-    @Override
-    public void getCategory(CategoryDelegate networkDelegate) {
-        remoteSource.getCategory(networkDelegate);
-    }
-
-    @Override
-    public void getCategorybyname(NetworkDelegate networkDelegate, String name) {
-        remoteSource.getCategorybyname(networkDelegate , name);
-    }
-
-    @Override
-    public void getIngredients(NetworkDelegate networkDelegate) {
-        remoteSource.getIngredients(networkDelegate);
-    }
-
-    @Override
-    public void getIngredientsname(NetworkDelegate networkDelegate, String name) {
-        remoteSource.getIngredientsname(networkDelegate , name);
     }
 
 

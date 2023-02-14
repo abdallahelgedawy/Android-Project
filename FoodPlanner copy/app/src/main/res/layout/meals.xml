@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/img_search"
             android:layout_width="238dp"
             android:layout_height="138dp"
             android:layout_marginTop="98dp"
@@ -25,14 +25,14 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/text_cat"
+            android:id="@+id/text_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="62dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img" />
+            app:layout_constraintTop_toBottomOf="@+id/img_search" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -42,11 +42,11 @@
             android:layout_marginTop="53dp"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_cat"
+            app:layout_constraintTop_toBottomOf="@+id/text_search"
             android:contentDescription="@android:string/autofill"/>
 
         <ToggleButton
-            android:id="@+id/fav_cat"
+            android:id="@+id/toggleButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="328dp"

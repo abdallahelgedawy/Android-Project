@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ToggleButton
-            android:id="@+id/fav_cat"
+            android:id="@+id/toggleButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="32dp"
