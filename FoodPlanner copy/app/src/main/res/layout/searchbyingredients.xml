@@ -6,15 +6,15 @@
     android:background="@color/white"
     android:minWidth="48dp"
     android:minHeight="48dp"
-    app:cardCornerRadius="30dp"
-    tools:context=".dailyMeal.view.DailyMealActivity">
+    app:cardCornerRadius="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_ing"
         android:layout_width="match_parent"
         android:layout_height="212dp">
 
         <ImageView
-            android:id="@+id/img_search"
+            android:id="@+id/img_ing"
             android:layout_width="106dp"
             android:layout_height="70dp"
             android:layout_marginTop="92dp"
@@ -25,7 +25,7 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/text_search"
+            android:id="@+id/tv_ing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="73dp"

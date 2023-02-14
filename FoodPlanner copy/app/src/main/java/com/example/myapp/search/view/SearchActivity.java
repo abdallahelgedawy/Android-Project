@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.example.myapp.R;
+import com.example.myapp.search.category.view.CategoryActivity;
 import com.example.myapp.search.category.view.CategoryMealsActivity;
 import com.example.myapp.search.searchbycountry.view.CountryMealsActivity;
 import com.example.myapp.search.searchbycountry.view.Search_by_country_Activity;
@@ -32,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(com.example.myapp.search.view.SearchActivity.this, CategoryMealsActivity.class);
+                Intent intent = new Intent(com.example.myapp.search.view.SearchActivity.this, CategoryActivity.class);
                 startActivity(intent);
             }
         });

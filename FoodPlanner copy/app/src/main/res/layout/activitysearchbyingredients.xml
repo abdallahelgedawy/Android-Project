@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".search.searchbycountry.view.CountryMealsActivity">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/frame"
         android:layout_width="406dp"
-        android:layout_height="279dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="40dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="387dp"
-            android:layout_height="262dp"
+            android:id="@+id/recycler_ing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center" />
     </androidx.cardview.widget.CardView>
 

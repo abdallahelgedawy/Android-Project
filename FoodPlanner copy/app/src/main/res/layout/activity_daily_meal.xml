@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/img_search"
+                android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
@@ -38,7 +38,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/text_search"
+            android:id="@+id/text_cat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="150dp"
