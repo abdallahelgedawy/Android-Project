@@ -7,6 +7,15 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "meals")
 public class Meals {
+    public String getStrIngredient() {
+        return strIngredient;
+    }
+
+    public void setStrIngredient(String strIngredient) {
+        this.strIngredient = strIngredient;
+    }
+
+    private String strIngredient;
     private String strIngredient10;
     private String strIngredient12;
     private String strIngredient11;

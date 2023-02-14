@@ -8,13 +8,13 @@ import androidx.room.RoomDatabase;
 
 import com.example.myapp.model.Meals;
 
-@Database(entities = {Meals.class},version = 1)
+@Database(entities = {Meals.class},version = 2)
 public abstract class AppDataBase extends RoomDatabase {
     private static AppDataBase instance = null;
     public abstract MealsDao mealsDao();
     public static synchronized AppDataBase getInstance(Context context){
         if (instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(), AppDataBase.class, "mealsdb")
+            instance = Room.databaseBuilder(context.getApplicationContext(), AppDataBase.class, "FoodPlanner")
                     .build(); }
         return instance; }
 }

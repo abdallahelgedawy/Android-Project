@@ -102,7 +102,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHo
             title = itemView.findViewById(R.id.fav_name);
             description = itemView.findViewById(R.id.fav_desc);
             img = itemView.findViewById(R.id.fav_img);
-            favorite = itemView.findViewById(R.id.toggleButton);
+            favorite = itemView.findViewById(R.id.fav_cat);
             rmv=itemView.findViewById(R.id.button);
         }
     }

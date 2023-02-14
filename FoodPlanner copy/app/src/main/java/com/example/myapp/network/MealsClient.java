@@ -2,6 +2,7 @@ package com.example.myapp.network;
 
 import android.util.Log;
 
+import com.example.myapp.model.Categories;
 import com.example.myapp.model.Meals;
 import com.example.myapp.model.RandomMeals;
 import com.google.gson.Gson;
@@ -68,6 +69,43 @@ public class MealsClient implements RemoteSource{
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(item->networkDelegate.onSuccessResult(item.getMeals()) );
+    }
+
+    @Override
+    public void getCategory(CategoryDelegate networkDelegate) {
+        ProductService myApi = enqueueCall();
+        Observable<Categories> observable = myApi.getCategories().
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o -> networkDelegate.successCategory(o.getCategories()));
+    }
+
+    @Override
+    public void getCategorybyname(NetworkDelegate networkDelegate, String name) {
+        ProductService myApi = enqueueCall();
+        Observable<RandomMeals> observable = myApi.getCategoryName(name).
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(item -> networkDelegate.onSuccessResult(item.getMeals()));
+    }
+
+    @Override
+    public void getIngredients(NetworkDelegate networkDelegate) {
+        ProductService myApi = enqueueCall();
+        Observable<RandomMeals> observable = myApi.getIngredientsByName().
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(item -> networkDelegate.onSuccessResult(item.getMeals()));
+    }
+
+    @Override
+    public void getIngredientsname(NetworkDelegate networkDelegate, String name) {
+        ProductService myApi = enqueueCall();
+        Observable<RandomMeals> observable = myApi.getIngredients(name).
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(item -> networkDelegate.onSuccessResult(item.getMeals()));
+
     }
 }
 

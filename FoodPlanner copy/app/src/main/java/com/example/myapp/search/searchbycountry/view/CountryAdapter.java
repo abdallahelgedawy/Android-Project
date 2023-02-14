@@ -77,9 +77,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
         Spinner days;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.text_search);
-            img = itemView.findViewById(R.id.img_search);
-            favorite = itemView.findViewById(R.id.toggleButton);
+            title = itemView.findViewById(R.id.text_cat);
+            img = itemView.findViewById(R.id.img);
+            favorite = itemView.findViewById(R.id.fav_cat);
             days = itemView.findViewById(R.id.spinner);
         }
     }
