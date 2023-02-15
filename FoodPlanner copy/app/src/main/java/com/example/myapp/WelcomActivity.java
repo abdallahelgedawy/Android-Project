@@ -27,7 +27,5 @@ public class WelcomActivity extends AppCompatActivity {
 
     public void login(View view) {
         startActivities(new Intent[]{new Intent(WelcomActivity.this, LoginActivity.class)});
-
-
     }
 }
