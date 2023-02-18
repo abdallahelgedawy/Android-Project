@@ -8,22 +8,33 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
+import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Meals;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHolder>{
     private Context context;
     private ArrayList<Meals> meals;
     private boolean clicked = false;
+    private OnClickName listener;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
-    public CountryAdapter(Context context) {
+    public CountryAdapter(Context context ,OnClickName listener) {
         this.context = context;
+        this.listener=listener;
         this.meals = new ArrayList<>();
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
     }
     @NonNull
     @Override
@@ -42,20 +53,22 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
         holder.favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                if (!clicked) {
-                    holder.favorite.setBackgroundResource(R.drawable.baseline_red_24);
-                    clicked = true;
-
-                } else if (clicked) {
-                    holder.favorite.setBackgroundResource(R.drawable.baseline_favorite_24);
-                    clicked = false;
-
+                if (user != null) {
+                    listener.onClick(meal);
+                    if (!clicked) {
+                        holder.favorite.setBackgroundResource(R.drawable.baseline_red_24);
+                        clicked = true;
+                    } else if (clicked) {
+                        holder.favorite.setBackgroundResource(R.drawable.baseline_favorite_24);
+                        clicked = false;
+                    }
+                }else{
+                    Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
         });
-
 
     }
 

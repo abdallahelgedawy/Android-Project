@@ -37,4 +37,10 @@ public class CountryMealPresenter implements CountryMealPresenterInterface, Netw
     public void getCountryMeal(String name) {
         repo.getCountryMeal(this,name);
     }
+
+    @Override
+    public void addToFav(Meals meals) {
+        repo.insert(meals);
+        
+    }
 }

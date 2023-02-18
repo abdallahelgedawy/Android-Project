@@ -35,6 +35,8 @@
     <string name="facebook_app_id">733620418248455</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">fbe13b8f069b6d3821a13a70c50ad414</string>
+    <string name="hint">User Password</string>
+    <string name="confirm">Confirm Password</string>
     <string-array name="languages">
         <item>Saturday</item>
         <item>Sunday</item>

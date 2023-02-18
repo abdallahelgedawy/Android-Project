@@ -1,5 +1,7 @@
 package com.example.myapp.search.searchbycountry.view;
 
+import com.example.myapp.model.Meals;
+
 public interface OnClickCountry {
-   public void onClick(String name);
+   public void onClickname(String name);
 }

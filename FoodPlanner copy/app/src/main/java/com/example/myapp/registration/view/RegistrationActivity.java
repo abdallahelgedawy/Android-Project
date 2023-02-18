@@ -59,6 +59,7 @@ public class RegistrationActivity extends AppCompatActivity {
     ImageView google;
     ImageView twitter;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
     ImageView loginButton;
 
 
@@ -70,7 +71,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         //initiale
-        button=findViewById(R.id.Register2_btn);
+        button=findViewById(R.id.start_btn);
         name=findViewById(R.id.fullname);
         password=findViewById(R.id.password);
         email=findViewById(R.id.email);
@@ -78,20 +79,23 @@ public class RegistrationActivity extends AppCompatActivity {
         login=findViewById(R.id.tv_signin);
         google=findViewById(R.id.google);
         loginButton=findViewById(R.id.facebook);
-        twitter=findViewById(R.id.twitter);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logInWithReadPermissions(RegistrationActivity.this, Arrays.asList("public_profile"));
+              //  callbackManager = CallbackManager.Factory.create();
+
             }
         });
 
-
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-        callbackManager = CallbackManager.Factory.create();
+      //  LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+     callbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -116,7 +120,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
 //signInstance
         mAuth = FirebaseAuth.getInstance();
-        FirebaseAuth.getInstance().signOut();
+
 //progressDialoge initiale
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Registering user");
@@ -176,7 +180,6 @@ public class RegistrationActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-
                                     startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 } else {
                                     Toast.makeText(RegistrationActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
@@ -201,13 +204,22 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+
                         } else {
                             Toast.makeText(RegistrationActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+
                         }
                     }
                 });
     }
-//To register
+
+    private void updateUI(FirebaseUser user) {
+
+    }
+
+    //To register
     private void registerUser(String useremail, String userpassword) {
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(useremail, userpassword)
@@ -238,7 +250,8 @@ public class RegistrationActivity extends AppCompatActivity {
 // To login
 
     public void actiivitymain(View view) {
-        startActivities(new Intent[]{new Intent(RegistrationActivity.this, LoginActivity.class)});
+       startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
+        finish();
     }
     @Override
     public boolean onSupportNavigateUp(){
@@ -249,7 +262,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
     }
 
 }

@@ -1,56 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".search.view.SearchActivity">
-    <ImageView
-        android:id="@+id/imageView2"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:orientation="vertical">
+
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foreground="@drawable/foreground_design"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ten"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_country"
-        android:layout_width="380dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="128dp"
-        android:text="Search by Country"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_category"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_category"
-        android:layout_width="380dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="128dp"
-        android:text="Search by Category"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_ingredients"
-        app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/btn_country"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:foreground="@drawable/foreground_design"
 
-    <Button
-        android:id="@+id/btn_ingredients"
-        android:layout_width="380dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="112dp"
-        android:text="Search By Ingredients"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:scaleType="centerCrop"
+                android:src="@drawable/categry" />
+
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/search_btn"
+                android:padding="5dp"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                app:layout_constraintBottom_toBottomOf="@+id/editText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/nameingradiant"
+                android:layout_width="319dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="60dp"
+                android:fontFamily="@font/amita"
+                android:gravity="center"
+                android:text="Search By Country"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btn_category"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:foreground="@drawable/foreground_design"
+                android:scaleType="centerCrop"
+                android:src="@drawable/countryfood" />
+
+            <TextView
+                android:id="@+id/namecategry"
+                android:layout_width="319dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="60dp"
+                android:fontFamily="@font/amita"
+                android:gravity="center"
+                android:text="Search By Categry"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btn_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:foreground="@drawable/foreground_design"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ingradient" />
+
+            <TextView
+                android:id="@+id/namecountry"
+                android:layout_width="319dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="60dp"
+                android:fontFamily="@font/amita"
+                android:gravity="center"
+                android:text="Search By Ingradients"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:pointerIcon="cell"
+            app:itemBackground="@color/purple_700"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/bottom_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
+    </FrameLayout>
+
+
+</LinearLayout>
+
+

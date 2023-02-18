@@ -35,4 +35,9 @@ public class SearchbyingPresenter implements SearchbyingPresenterInterface , Net
     public void getIngName(String name) {
 repo.getIngredientsname(this , name);
     }
+
+    @Override
+    public void addToFav(Meals meals) {
+        repo.insert(meals);
+    }
 }

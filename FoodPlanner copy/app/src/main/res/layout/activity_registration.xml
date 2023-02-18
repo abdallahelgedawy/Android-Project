@@ -14,7 +14,7 @@
         android:foreground="@drawable/foreground_design"
         android:scaleType="centerCrop"
         android:src="@drawable/ten"
-        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="-600dp"
+        android:fontFamily="@font/lobster"
         android:text="@string/Our_Food_App"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -49,11 +50,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.213" />
 
+
     <EditText
         android:id="@+id/fullname"
         android:layout_width="314dp"
         android:layout_height="48dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="244dp"
         android:layout_marginEnd="-150dp"
         android:backgroundTint="#CCCCCC"
         android:drawableLeft="@drawable/baseline_account_circle_24"
@@ -74,7 +76,6 @@
         android:layout_width="314dp"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="-150dp"
         android:backgroundTint="#CCCCCC"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="30dp"
@@ -83,55 +84,57 @@
         android:inputType="textPersonName"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
-
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/tv_textsignup"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="@+id/tv_textsignup"
+        app:layout_constraintEnd_toEndOf="@+id/fullname"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/fullname"
         app:layout_constraintTop_toBottomOf="@+id/fullname" />
 
-    <EditText
-        android:id="@+id/password2"
-        android:layout_width="314dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="-150dp"
-        android:backgroundTint="#CCCCCC"
-        android:drawableLeft="@drawable/baseline_key_24"
-        android:drawablePadding="30dp"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPersonName"
-        android:textAlignment="textStart"
-        android:textColor="#FFFFFF"
-
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/tv_textsignup"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="@+id/tv_textsignup"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="314dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="-150dp"
-        android:backgroundTint="#CCCCCC"
+        android:layout_marginTop="4dp"
         android:drawableLeft="@drawable/baseline_key_24"
         android:drawablePadding="30dp"
         android:ems="10"
-        android:hint="@string/Password"
-        android:inputType="textPersonName"
+        android:hint="@string/hint"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
-
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/tv_textsignup"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="@+id/tv_textsignup"
+        android:textColorHighlight="#FBFBFB"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/email"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
+    <EditText
+        android:id="@+id/password2"
+        android:layout_width="314dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="284dp"
+        android:drawableLeft="@drawable/baseline_key_24"
+        android:drawablePadding="30dp"
+        android:ems="10"
+        android:hint="@string/confirm"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textAlignment="textStart"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FBFBFB"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/password" />
+
     <Button
-        android:id="@+id/Register2_btn"
+        android:id="@+id/start_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
@@ -153,31 +156,32 @@
         android:id="@+id/tv_alraedy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="-200dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="-200dp"
         android:text="@string/already"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_btn"
+        app:layout_constraintVertical_bias="0.02" />
+
 
     <TextView
         android:id="@+id/tv_signin"
-        android:layout_width="48dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="560dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="108dp"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:onClick="login"
-        android:text="ligin"
+        android:text="@string/signin"
         android:textColor="#E53935"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toEndOf="@+id/tv_alraedy"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/start_btn" />
 
     <TextView
         android:id="@+id/textView"
@@ -216,12 +220,12 @@
 
     <ImageView
         android:id="@+id/facebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="54dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.324"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/facebook" />
 
@@ -229,21 +233,14 @@
         android:id="@+id/google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/facebook"
         app:srcCompat="@drawable/google" />
 
-    <ImageView
-        android:id="@+id/twitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/google"
-        app:srcCompat="@drawable/twitter" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

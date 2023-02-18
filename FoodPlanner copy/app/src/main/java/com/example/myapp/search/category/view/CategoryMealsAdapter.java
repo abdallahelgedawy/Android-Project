@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
+import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Category;
 import com.example.myapp.model.Meals;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -24,10 +28,17 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
         private Context context;
         private ArrayList<Meals> meals;
        private boolean clicked = false;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
-        public CategoryMealsAdapter(Context context) {
+OnClickFavoritCategory listener;
+
+    public CategoryMealsAdapter(Context context ,OnClickFavoritCategory listener ) {
             this.context = context;
+            this.listener=listener;
             this.meals = new ArrayList<>();
+            auth=FirebaseAuth.getInstance();
+            user=auth.getCurrentUser();
         }
 
 
@@ -45,23 +56,28 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
         Meals meal = meals.get(position);
         holder.title.setText(meal.getStrMeal());
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
-        holder.favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.fav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                if (!clicked) {
-                    holder.favorite.setBackgroundResource(R.drawable.baseline_red_24);
-                    clicked = true;
-
-                } else if (clicked) {
-                    holder.favorite.setBackgroundResource(R.drawable.baseline_favorite_24);
-                    clicked = false;
-
+                if (user != null) {
+                    listener.onClick(meal);
+                    if (!clicked) {
+                        holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
+                        clicked = true;
+                    } else if (clicked) {
+                        holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
+                        clicked = false;
+                    }
+                }else{
+                    Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
         });
+
     }
+
     public void setList(ArrayList<Meals> meals) {
         this.meals = meals;
 
@@ -77,15 +93,15 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
 
             TextView title;
             ImageView img;
-            ToggleButton favorite;
-            Spinner days;
+            ToggleButton fav;
+          //  Spinner days;
 
             public viewHolder(@NonNull View itemView) {
                 super(itemView);
                 title = itemView.findViewById(R.id.text_cat);
                 img = itemView.findViewById(R.id.img);
-                favorite = itemView.findViewById(R.id.fav_cat);
-               // days = itemView.findViewById(R.id.spinner_category);
+                fav = itemView.findViewById(R.id.fav_cat);
+              //  days = itemView.findViewById(R.id.spinner_category);
             }
         }
     }

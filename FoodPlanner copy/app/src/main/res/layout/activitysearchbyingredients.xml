@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/mediamgray"
+android:orientation="vertical"
+tools:context=".search.byIngredients.view.Search_by_ingredients_Activity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/frame"
-        android:layout_width="406dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_ing"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center" />
-    </androidx.cardview.widget.CardView>
+    android:layout_height="670dp">
 
     <SearchView
-        android:layout_width="208dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="1dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/frame"
+        android:id="@+id/editText"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_margin="6dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/search_btn"
+        android:drawableRight="@drawable/baseline_search_24"
+        android:drawablePadding="9dp"
+        android:fontFamily="@font/amita_bold"
+        android:hint="@string/search"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/search_btn"
+        android:padding="5dp"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/hellotext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:fontFamily="@font/lobster"
+        android:text="Ingredients"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_ing"
+        android:layout_width="392dp"
+        android:layout_height="549dp"
+        android:layout_margin="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hellotext" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

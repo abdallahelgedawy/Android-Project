@@ -10,8 +10,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 
@@ -24,6 +27,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHo
     private Context context;
     private ArrayList<Category> category;
     private OnClickCategory listener;
+   // private boolean clicked = false;
 
     public CategoryAdapter(Context context , OnClickCategory listener) {
         this.context = context;
@@ -48,9 +52,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHo
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClick(holder.title.getText().toString());
+                listener.onClickCategry(holder.title.getText().toString());
             }
         });
+
+
+
     }
 
     @Override
@@ -65,7 +72,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewHo
 
         TextView title;
         ImageView img;
-        ConstraintLayout layout;
+        LinearLayout layout;
+
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

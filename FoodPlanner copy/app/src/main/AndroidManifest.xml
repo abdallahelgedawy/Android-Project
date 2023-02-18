@@ -68,6 +68,8 @@
         </activity>
         <activity android:name=".registration.view.RegistrationActivity" />
         <activity android:name=".login.view.LoginActivity" />
+        <activity android:name=".StartActivity"
+            android:exported="false" />
         <activity
             android:name=".WelcomActivity"
             android:exported="false"

@@ -33,6 +33,10 @@ public class CategoryMealsPresenter implements CategoryMealsPresenterInterface ,
 repo.getCategorybyname( this,name);
     }
 
+    @Override
+    public void addToFav(Meals meals) {
+        repo.insert(meals);
+    }
 
 
     @Override

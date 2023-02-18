@@ -4,8 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
+import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Meals;
 
 import java.util.ArrayList;
@@ -21,13 +25,15 @@ import java.util.ArrayList;
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.viewHolder> {
     private Context context;
     private ArrayList<Meals> meals;
+    private boolean clicked = false;
+
     private String url_part1="https://www.themealdb.com/images/ingredients/";
     private  String url_part2=".png";
-    private OnClickIngredients click;
-    public IngredientsAdapter(Context context , OnClickIngredients click){
+    private OnClickIngredients listener;
+    public IngredientsAdapter(Context context , OnClickIngredients listener){
         this.context = context;
         this.meals = new ArrayList<>();
-        this.click = click;
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,12 +50,14 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         Meals meal = meals.get(position);
         holder.title.setText(meal.getStrIngredient());
         Glide.with(context).load(url_part1+meal.getStrIngredient()+url_part2).into(holder.img);
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.onClick(holder.title.getText().toString());
+                listener.onClickIngredients(holder.title.getText().toString());
             }
         });
+
 
     }
     public void filterList(ArrayList<Meals> filterlist) {
@@ -69,7 +77,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         TextView title;
         ImageView img;
-       ConstraintLayout layout;
+       LinearLayout layout;
+
 
 
 
@@ -78,6 +87,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
             title = itemView.findViewById(R.id.tv_ing);
             img = itemView.findViewById(R.id.img_ing);
            layout = itemView.findViewById(R.id.layout_ing);
+
 
 
         }

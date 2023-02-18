@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -14,17 +15,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
+import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Meals;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 public class Search_by_ingredients_Adapter extends RecyclerView.Adapter<Search_by_ingredients_Adapter.viewHolder> {
     private Context context;
     private ArrayList<Meals> meals;
+
     private boolean clicked = false;
-    public Search_by_ingredients_Adapter(Context context) {
+    FirebaseAuth auth;
+    FirebaseUser user;
+
+    OnClickFavoriteIngrediant listener;
+    public Search_by_ingredients_Adapter(Context context,OnClickFavoriteIngrediant listener) {
         this.context = context;
         this.meals = new ArrayList<>();
+        this. listener=listener;
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
     }
     @NonNull
     @Override
@@ -43,16 +55,19 @@ public class Search_by_ingredients_Adapter extends RecyclerView.Adapter<Search_b
         holder.fav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                if (!clicked) {
-                    holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
-                    clicked = true;
-
-                } else if (clicked) {
-                    holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
-                    clicked = false;
-
+                if (user != null) {
+                   listener.onClick(meal);
+                    if (!clicked) {
+                        holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
+                        clicked = true;
+                    } else if (clicked) {
+                        holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
+                        clicked = false;
+                    }
+                }else{
+                    Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
         });
@@ -83,4 +98,5 @@ public class Search_by_ingredients_Adapter extends RecyclerView.Adapter<Search_b
 
         }
     }
+
 }

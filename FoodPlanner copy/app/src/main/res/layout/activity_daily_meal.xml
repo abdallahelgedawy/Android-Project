@@ -4,79 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginRight="5dp"
     android:background="@drawable/baseline_favorite_24"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="@color/purple_700"
     android:minWidth="48dp"
     android:minHeight="48dp"
-    android:padding="4dp"
+    android:padding="10dp"
     app:cardCornerRadius="30dp"
+    app:cardElevation="7dp"
+    app:cardUseCompatPadding="true"
     tools:context=".dailyMeal.view.DailyMealActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/img_search"
+        android:layout_width="170dp"
+        android:layout_height="113dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="195dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="182dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="32dp"
-            app:cardCornerRadius="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:clickable="false"
-                android:scaleType="fitXY"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/text_cat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="150dp"
-            android:layout_marginVertical="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="80dp"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="415dp"
-            android:layout_height="34dp"
-            android:layout_marginStart="1dp"
-            android:contentDescription="@android:string/autofill"
-            android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <ToggleButton
             android:id="@+id/btn_fav"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="103dp"
-            android:layout_marginTop="78dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/baseline_favorite_24"
             android:textOff="@null"
-            android:textOn="@null"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textOn="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="3dp">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/amita_bold"
+            android:text="Name Food"
+            android:textAlignment="center"
+            android:textColor="@color/purple_700"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
 

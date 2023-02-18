@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
 import com.example.myapp.registration.view.RegistrationActivity;
+import com.example.myapp.search.byIngredients.view.IngredientsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
 // initial data
         btn = findViewById(R.id.login_btn);
-        gest = findViewById(R.id.Register2_btn);
+        gest = findViewById(R.id.start_btn);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         register = findViewById(R.id.tv_register);
@@ -61,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userpassword = password.getText().toString();
                 String useremail = email.getText().toString().trim();
-
                 if (!Patterns.EMAIL_ADDRESS.matcher(useremail).matches()) {
                     email.setError("Invalid Email");
                     email.setFocusable(true);
@@ -84,8 +84,8 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivities(new Intent[]{new Intent(LoginActivity.this, RegistrationActivity.class)});
-
+                Intent intent = new Intent(LoginActivity.this,RegistrationActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -159,7 +159,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 // to login to daily mael page
-
     private void loginUser(String useremail, String userpassword) {
         progressDialog.setMessage("Loging in ...");
         progressDialog.show();
@@ -169,8 +168,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivities(new Intent[]{new Intent(LoginActivity.this, DailyMealActivity.class)});
-
+                            startActivity(new Intent(LoginActivity.this, DailyMealActivity.class));
+                            finish();
                         } else {
                             progressDialog.dismiss();
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -180,28 +179,19 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
     }
 
 // to check user email and password
 
-    private void  checkUserStatus(){
-        FirebaseUser user=firebaseAuth.getCurrentUser();
-        if(user != null){
 
-        }else {
-            startActivities(new Intent[]{new Intent(LoginActivity.this, RegistrationActivity.class)});
-            finish();
-        }
-    }
 
-    // to start the check user
+// to start the check user
     @Override
     protected void onStart() {
-        checkUserStatus();
         super.onStart();
+
     }
 
     //to back to registeration page
@@ -214,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         onBackPressed();
         return super.onSupportNavigateUp();
-    }
+}
 
     @Override
     public void onBackPressed() {

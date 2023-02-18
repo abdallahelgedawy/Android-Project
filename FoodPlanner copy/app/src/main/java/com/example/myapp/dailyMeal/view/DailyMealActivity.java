@@ -7,20 +7,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.presenter.DailyMealPresenter;
 import com.example.myapp.dailyMeal.presenter.DailyMealPresenterInterface;
 import com.example.myapp.db.ConcreteLocalSource;
 import com.example.myapp.favorite.presenter.FavMealPressenter;
 import com.example.myapp.favorite.view.Favorite_itemsActivity;
+import com.example.myapp.login.view.LoginActivity;
 import com.example.myapp.model.Repository;
 import com.example.myapp.model.Meals;
 import com.example.myapp.network.MealsClient;
+import com.example.myapp.registration.view.RegistrationActivity;
 import com.example.myapp.search.view.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class DailyMealActivity extends AppCompatActivity implements  DailyMealsViewInterface ,OnClickFavorite {
+
+    DailyMealAdapter dailyAdapter;
+
     BottomNavigationView bottomNavigationView;
     RecyclerView recyclerView;
 
@@ -30,9 +42,14 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
     LinearLayoutManager lm2;
     DailyMealAdapter adapter;
 
-    DailyMealAdapter ad2;
+    MealsAdapter ad2;
     FavMealPressenter favPressenter;
     DailyMealPresenterInterface dailyMealPresenterInterface;
+
+    ImageView arrow;
+
+
+    FirebaseAuth firebaseAuth;
 
     @Override
 
@@ -40,30 +57,37 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_meal);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         dailyMealPresenterInterface = new DailyMealPresenter(Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(this), this), this, this);
-
-
         dailyMealPresenterInterface.getMeal();
         dailyMealPresenterInterface.getAllMeal();
-
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         recyclerView = findViewById(R.id.recycler_daily);
         rv2 = findViewById(R.id.search_rec);
-
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
-
         lm2 = new LinearLayoutManager(this);
         lm2.setOrientation(RecyclerView.VERTICAL);
-
         adapter = new DailyMealAdapter(this, this);
-        ad2 = new DailyMealAdapter(this ,this);
-
+        ad2 = new MealsAdapter(this ,this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
         rv2.setLayoutManager(lm2);
         rv2.setAdapter(ad2);
+
+        arrow=findViewById(R.id.arrow);
+
+        arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DailyMealActivity.this, LoginActivity.class));
+
+                firebaseAuth.signOut();
+                finish();
+            }
+        });
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -87,6 +111,8 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
             }
         });
     }
+
+
 
     @Override
     public void showData(ArrayList<Meals> products) {

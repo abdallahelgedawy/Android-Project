@@ -1,6 +1,4 @@
 package com.example.myapp.search.searchbycountry.view;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,14 +6,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.SearchView;
 
 import com.example.myapp.R;
+import com.example.myapp.dailyMeal.view.DailyMealActivity;
+import com.example.myapp.login.view.LoginActivity;
 import com.example.myapp.model.Countrys;
 import com.example.myapp.model.Meals;
 import com.example.myapp.model.Repository;
 import com.example.myapp.network.MealsClient;
+import com.example.myapp.search.byIngredients.view.IngredientsActivity;
+import com.example.myapp.search.category.view.CategoryActivity;
+import com.example.myapp.search.category.view.CategoryMealsActivity;
 import com.example.myapp.search.searchbycountry.presenter.CountryMealPresenter;
 import com.example.myapp.search.searchbycountry.presenter.CountryMealPresenterInterface;
+import com.example.myapp.search.view.SearchActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -24,7 +33,8 @@ public class CountryMealsActivity extends AppCompatActivity implements OnClickCo
 
     ArrayList<Countrys> countrymeals = new ArrayList<Countrys>();
     CountryMealAdapter countryMealAdapter;
-    // OnClickCountry listlener;
+    ImageView arrow;
+    FirebaseAuth firebaseAuth;
 
 
 
@@ -33,7 +43,9 @@ public class CountryMealsActivity extends AppCompatActivity implements OnClickCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_meals);
 
-        recyclerView=findViewById(R.id.country_rec);
+        firebaseAuth = FirebaseAuth.getInstance();
+        arrow=findViewById(R.id.arrow);
+        recyclerView=findViewById(R.id.counter_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         countrymeals.add(new Countrys(R.drawable.american,"American"));
@@ -65,15 +77,27 @@ public class CountryMealsActivity extends AppCompatActivity implements OnClickCo
         countrymeals.add(new Countrys(R.drawable.vietnam,"Vietnamese"));
 
 
-            countryMealAdapter=new CountryMealAdapter(this ,countrymeals ,this);
+            countryMealAdapter=new CountryMealAdapter(this ,countrymeals,this );
             recyclerView.setAdapter(countryMealAdapter);
+
+
+
+        arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CountryMealsActivity.this, com.example.myapp.search.view.SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         }
 
+
+
     @Override
-    public void onClick(String name) {
+    public void onClickname(String name) {
         Intent intent = new Intent(CountryMealsActivity.this , Search_by_country_Activity.class);
         intent.putExtra("Country" , name);
         Log.i("TAG", "onClick: " + name);
-        startActivity(intent);
+       startActivity(intent);
     }
 }
