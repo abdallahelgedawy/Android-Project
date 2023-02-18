@@ -77,8 +77,8 @@ public class Search_by_ingredients_Adapter extends RecyclerView.Adapter<Search_b
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.text_cat);
-            img = itemView.findViewById(R.id.img);
-            fav = itemView.findViewById(R.id.fav_cat);
+            img = itemView.findViewById(R.id.img_details);
+            fav = itemView.findViewById(R.id.fav_details);
 
 
         }

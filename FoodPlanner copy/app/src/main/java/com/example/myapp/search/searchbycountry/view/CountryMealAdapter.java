@@ -64,7 +64,7 @@ public class CountryMealAdapter extends RecyclerView.Adapter<CountryMealAdapter.
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.text_cat);
-            img = itemView.findViewById(R.id.img);
+            img = itemView.findViewById(R.id.img_details);
             layout=itemView.findViewById(R.id.layout_country);
         }
     }

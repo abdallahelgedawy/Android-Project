@@ -14,7 +14,7 @@
         android:layout_height="212dp">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/img_details"
             android:layout_width="106dp"
             android:layout_height="70dp"
             android:layout_marginTop="92dp"

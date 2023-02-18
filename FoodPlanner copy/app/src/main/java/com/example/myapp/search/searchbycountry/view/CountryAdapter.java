@@ -78,8 +78,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.text_cat);
-            img = itemView.findViewById(R.id.img);
-            favorite = itemView.findViewById(R.id.fav_cat);
+            img = itemView.findViewById(R.id.img_details);
+            favorite = itemView.findViewById(R.id.fav_details);
             days = itemView.findViewById(R.id.spinner);
         }
     }

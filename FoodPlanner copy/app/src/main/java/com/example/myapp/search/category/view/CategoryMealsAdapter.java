@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
-import com.example.myapp.model.Category;
 import com.example.myapp.model.Meals;
 
 import java.util.ArrayList;
@@ -83,8 +82,8 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
             public viewHolder(@NonNull View itemView) {
                 super(itemView);
                 title = itemView.findViewById(R.id.text_cat);
-                img = itemView.findViewById(R.id.img);
-                favorite = itemView.findViewById(R.id.fav_cat);
+                img = itemView.findViewById(R.id.img_details);
+                favorite = itemView.findViewById(R.id.fav_details);
                // days = itemView.findViewById(R.id.spinner_category);
             }
         }

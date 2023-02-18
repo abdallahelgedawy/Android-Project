@@ -54,12 +54,12 @@ public class MealsClient implements RemoteSource{
         }
 
     @Override
-    public void getAllMeal(SpecialDelegate networkDelegate) {
+    public void getAllMeal(SpecialDelegate networkDelegate , String name) {
         ProductService myApi = enqueueCall();
-        Observable<RandomMeals> observable = myApi.getMeal().
+        Observable<RandomMeals> observable = myApi.getAllMeals(name).
                 subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        observable.subscribe(item->networkDelegate.onpecialResult(item.getMeals()) );
+        observable.subscribe(item->networkDelegate.onpecialResult(item.getMeals()));
     }
 
     @Override
@@ -106,6 +106,15 @@ public class MealsClient implements RemoteSource{
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(item -> networkDelegate.onSuccessResult(item.getMeals()));
 
+    }
+
+    @Override
+    public void getMeal(NetworkDelegate networkDelegate, String name) {
+        ProductService myApi = enqueueCall();
+        Observable<RandomMeals> observable = myApi.getMeal(name).
+                subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(item -> networkDelegate.onSuccessResult(item.getMeals()));
     }
 }
 

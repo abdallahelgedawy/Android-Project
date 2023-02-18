@@ -1,4 +1,4 @@
-package com.example.myapp.favorite.view;
+package com.example.myapp.planMeals.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,13 +21,14 @@ import com.example.myapp.model.Meals;
 
 import java.util.List;
 
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHolder> {
+public class planAdapter extends RecyclerView.Adapter<planAdapter.viewHolder> {
     private Context context;
     private List<Meals> meals;
-    private OnClickFavorite listener;
-    private boolean clicked = false;
 
-    public FavoriteAdapter(Context context, List<Meals> meals, OnClickFavorite listener) {
+    private boolean clicked = false;
+    OnClickRemove listener;
+
+    public planAdapter(Context context, List<Meals> meals,OnClickRemove listener ) {
         this.context = context;
         this.meals = meals;
         this.listener = listener;
@@ -37,7 +38,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHo
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater  = (LayoutInflater) context .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.activity_favorite , parent , false);
+        View view = inflater.inflate(R.layout.plan , parent , false);
         viewHolder vh = new viewHolder(view);
         return vh;
     }
@@ -49,33 +50,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHo
         holder.title.setText(meal.getStrMeal());
 
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
-
-
+       holder.rmv.setImageResource(R.drawable.baseline_delete_24);
         holder.rmv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onClick(meal);
+
             }
         });
 
-        holder.favorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            boolean clicked = false;
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-
-                if (!clicked) {
-                    holder.favorite.setBackgroundResource(R.drawable.baseline_red_24);
-                    clicked = true;
-
-                } else if (clicked) {
-                    holder.favorite.setBackgroundResource(R.drawable.baseline_favorite_24);
-                    clicked = false;
-
-                }
-            }
-
-        });
 
 
 
@@ -92,20 +76,17 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHo
     public class viewHolder extends RecyclerView.ViewHolder{
 
         TextView title;
-        TextView description;
         ImageView img;
-        Button rmv;
-        ToggleButton favorite;
+        ImageView rmv;
+
 
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.fav_name);
-            description = itemView.findViewById(R.id.fav_desc);
-            img = itemView.findViewById(R.id.fav_img);
-            favorite = itemView.findViewById(R.id.fav_details);
-            rmv=itemView.findViewById(R.id.button);
+            title = itemView.findViewById(R.id.tv_plan);
+            img = itemView.findViewById(R.id.img_plan);
+            rmv=itemView.findViewById(R.id.rmv_plan);
         }
     }
 }

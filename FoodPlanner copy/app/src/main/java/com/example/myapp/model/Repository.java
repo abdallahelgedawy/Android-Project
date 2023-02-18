@@ -2,15 +2,15 @@ package com.example.myapp.model;
 
 import android.content.Context;
 
-import com.example.myapp.dailyMeal.view.DailyMealActivity;
 import com.example.myapp.db.LocalSource;
 import com.example.myapp.network.CategoryDelegate;
-import com.example.myapp.network.MealsClient;
 import com.example.myapp.network.NetworkDelegate;
 import com.example.myapp.network.RemoteSource;
 import com.example.myapp.network.SpecialDelegate;
 
 import java.util.List;
+
+import io.reactivex.Observable;
 
 public class Repository implements RepositoryInterface  {
 
@@ -38,8 +38,8 @@ public class Repository implements RepositoryInterface  {
     }
 
     @Override
-    public void getAllMeal(SpecialDelegate networkDelegate) {
-        remoteSource.getAllMeal(networkDelegate);
+    public void getAllMeal(SpecialDelegate networkDelegate , String s) {
+        remoteSource.getAllMeal(networkDelegate , s);
 
     }
 
@@ -69,6 +69,11 @@ public class Repository implements RepositoryInterface  {
         remoteSource.getIngredientsname(networkDelegate , name);
     }
 
+    @Override
+    public void getMeal(NetworkDelegate networkDelegate, String name) {
+        remoteSource.getMeal(networkDelegate , name);
+    }
+
 
     @Override
     public void delete(Meals meals) {
@@ -85,5 +90,41 @@ public class Repository implements RepositoryInterface  {
     public List<Meals> getFavoriteMeals() {
         return localSource.getFavoriteMeals();
     }
+
+    @Override
+    public Observable<List<Meals>> getMealsSaturday() {
+        return localSource.getMealsSaturday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsSunday() {
+        return localSource.getMealsSunday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsMonday() {
+        return localSource.getMealsMonday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsTuesday() {
+        return localSource.getMealsTuesday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsWednesday() {
+        return localSource.getMealsWednesday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsThursday() {
+        return localSource.getMealsThursday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsFriday() {
+        return localSource.getMealsFriday();
+    }
+
 }
 

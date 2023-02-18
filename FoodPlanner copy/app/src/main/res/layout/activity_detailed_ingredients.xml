@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/img_details"
             android:layout_width="238dp"
             android:layout_height="138dp"
             android:layout_marginTop="28dp"
@@ -34,10 +34,10 @@
             android:contentDescription="@android:string/autofill"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img" />
+            app:layout_constraintTop_toBottomOf="@+id/img_details" />
 
         <ToggleButton
-            android:id="@+id/fav_cat"
+            android:id="@+id/fav_details"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="344dp"
@@ -55,16 +55,16 @@
         android:layout_height="153dp">
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/description_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:text="Description Food"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/name" />
+            app:layout_constraintTop_toTopOf="@+id/name_Details" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/name_Details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name Food"

@@ -46,18 +46,20 @@ public class Favorite_itemsActivity extends AppCompatActivity implements OnClick
     public void showFavData(List<Meals> meals) {
         favoriteAdapter.setList(meals);
         favoriteAdapter.notifyDataSetChanged();
-
     }
 
     @Override
     public void deleteProduct(Meals meals) {
-        favPressenter.delete(meals);
-
+       favPressenter.delete(meals);
     }
 
     @Override
     public void onClick(Meals meals) {
-        favPressenter.delete(meals);
+         deleteProduct(meals);
+    }
+
+    @Override
+    public void onClickDetails(String name) {
 
     }
 }

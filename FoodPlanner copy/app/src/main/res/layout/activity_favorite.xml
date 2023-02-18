@@ -46,14 +46,13 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="16dp"
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ToggleButton
-            android:id="@+id/fav_cat"
+            android:id="@+id/fav_details"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="32dp"

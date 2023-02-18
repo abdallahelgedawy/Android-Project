@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/baseline_favorite_24"
     android:backgroundTint="@color/white"
@@ -13,24 +13,23 @@
     tools:context=".dailyMeal.view.DailyMealActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_details"
         android:layout_width="match_parent"
-        android:layout_height="195dp">
+        android:layout_height="192dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="182dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
             app:cardCornerRadius="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
+                android:id="@+id/img_details"
+                android:layout_width="98dp"
+                android:layout_height="95dp"
                 android:clickable="false"
                 android:scaleType="fitXY"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -43,36 +42,37 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="150dp"
             android:layout_marginVertical="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="17dp"
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="415dp"
-            android:layout_height="34dp"
-            android:layout_marginStart="1dp"
-            android:contentDescription="@android:string/autofill"
-            android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/btn_fav" />
 
         <ToggleButton
             android:id="@+id/btn_fav"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="103dp"
-            android:layout_marginTop="78dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/baseline_favorite_24"
             android:textOff="@null"
             android:textOn="@null"
             app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_plan"
+            android:layout_width="313dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="28dp"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
