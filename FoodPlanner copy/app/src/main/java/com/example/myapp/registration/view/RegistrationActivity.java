@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
+import com.example.myapp.dailyMeal.view.DailyMealAdapter;
 import com.example.myapp.login.view.LoginActivity;
 import com.facebook.FacebookSdk;
 import com.facebook.LoggingBehavior;
@@ -65,6 +66,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
 
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,45 +81,43 @@ public class RegistrationActivity extends AppCompatActivity {
         login=findViewById(R.id.tv_signin);
         google=findViewById(R.id.google);
         loginButton=findViewById(R.id.facebook);
+        createResult();
+
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
-
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logInWithReadPermissions(RegistrationActivity.this, Arrays.asList("public_profile"));
-              //  callbackManager = CallbackManager.Factory.create();
+             //  callbackManager = CallbackManager.Factory.create();
+                LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Log.d("TAG", "facebook:onSuccess:" + loginResult);
+                        handleFacebookAccessToken(loginResult.getAccessToken());
+                        startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class));
+                        finish();
+                    }
+                    @Override
+                    public void onCancel() {
+                        Log.d("TAG", "facebook:onCancel");
+                    }
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d("TAG", "facebook:onError");
+                    }
+                });
 
             }
+
         });
 
-      //  LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-     callbackManager = CallbackManager.Factory.create();
+        callbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d("TAG", "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-                startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class));
-                finish();
-            }
-            @Override
-            public void onCancel() {
-                Log.d("TAG", "facebook:onCancel");
-            }
-            @Override
-            public void onError(FacebookException exception) {
-                Log.d("TAG", "facebook:onError");
-            }
-        });
-//Google signin
-        GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
-        mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
+
+
 //signInstance
         mAuth = FirebaseAuth.getInstance();
 
@@ -143,7 +143,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
-        //Text Login
+ //Text Login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,16 +159,25 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivityForResult(signinIntent,RC_SIGN_IN);
             }
         });
+
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         if (firebaseUser != null) {
             startActivity(new Intent(this, DailyMealActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
+    }
+
+    public void createResult(){
+        GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
+
     }
     //Activity Google>>>>>>>>>>>>>>>>>>Google
     @Override
     protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
             if (signInAccountTask.isSuccessful()) {
@@ -216,6 +225,11 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        if(user !=null){
+
+            user.getEmail();
+           // mAuth = FirebaseAuth.getInstance().
+        }
 
     }
 
@@ -263,7 +277,10 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
+        updateUI(user);
+
     }
+
 
 }
 

@@ -36,13 +36,13 @@
 
             <TextView
                 android:id="@+id/text_food"
-                android:layout_width="146dp"
-                android:layout_height="40dp"
+                android:layout_width="231dp"
+                android:layout_height="29dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/amita_bold"
                 android:text="Food Name"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:flow_firstHorizontalBias="0.1"
                 app:layout_constraintBottom_toBottomOf="parent"

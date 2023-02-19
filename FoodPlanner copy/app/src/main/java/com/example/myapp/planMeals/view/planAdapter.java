@@ -50,19 +50,15 @@ public class planAdapter extends RecyclerView.Adapter<planAdapter.viewHolder> {
         holder.title.setText(meal.getStrMeal());
 
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
-       holder.rmv.setImageResource(R.drawable.baseline_delete_24);
+
         holder.rmv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onClick(meal);
-
+                meals.remove(position);
+                notifyDataSetChanged();
             }
         });
-
-
-
-
-
     }
 
     @Override
@@ -77,7 +73,7 @@ public class planAdapter extends RecyclerView.Adapter<planAdapter.viewHolder> {
 
         TextView title;
         ImageView img;
-        ImageView rmv;
+        Button rmv;
 
 
 

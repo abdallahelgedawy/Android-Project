@@ -120,10 +120,10 @@ public class DetailedMealActivity extends AppCompatActivity  implements Detailed
     }
 
     public void MealIng(Meals meals){
-        Log.i("TAG", "MealIng: " + meals.getStrIngredient1());
+
         if (meals.getStrIngredient1()!=null && !meals.getStrIngredient1().isEmpty())
             ingMeal.add(meals.getStrIngredient1());
-            Log.i("TAG", "MealIng: " + ingMeal);
+
         if (meals.getStrIngredient2()!=null && !meals.getStrIngredient2().isEmpty())
             ingMeal.add(meals.getStrIngredient2());
         if (meals.getStrIngredient3()!=null && !meals.getStrIngredient3().isEmpty())

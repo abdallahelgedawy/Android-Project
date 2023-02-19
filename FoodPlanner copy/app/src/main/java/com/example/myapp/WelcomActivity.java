@@ -37,6 +37,9 @@ public class WelcomActivity extends AppCompatActivity {
         Login = findViewById(R.id.logintext);
         mAuth = FirebaseAuth.getInstance();
 
+        mAuth.getInstance().signOut();
+
+
         Registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

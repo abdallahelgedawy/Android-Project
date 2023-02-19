@@ -132,7 +132,6 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DailyMealActivity.this, LoginActivity.class));
-
                 firebaseAuth.signOut();
                 finish();
             }
