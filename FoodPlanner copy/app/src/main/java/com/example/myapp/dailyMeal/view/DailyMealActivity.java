@@ -6,15 +6,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import android.view.View;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.presenter.DailyMealPresenter;
 import com.example.myapp.dailyMeal.presenter.DailyMealPresenterInterface;
 import com.example.myapp.db.ConcreteLocalSource;
+import com.example.myapp.detailedmeal.view.DetailedMealActivity;
 import com.example.myapp.favorite.presenter.FavMealPressenter;
 import com.example.myapp.favorite.view.Favorite_itemsActivity;
 import com.example.myapp.login.view.LoginActivity;
@@ -29,6 +37,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
+
 public class DailyMealActivity extends AppCompatActivity implements  DailyMealsViewInterface ,OnClickFavorite {
 
     DailyMealAdapter dailyAdapter;
@@ -42,9 +52,11 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
     LinearLayoutManager lm2;
     DailyMealAdapter adapter;
 
-    MealsAdapter ad2;
+    DailyMealAdapter ad2;
     FavMealPressenter favPressenter;
     DailyMealPresenterInterface dailyMealPresenterInterface;
+    private ArrayList<String> days = new ArrayList<>();
+    EditText search;
 
     ImageView arrow;
 
@@ -56,23 +68,61 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_meal);
+        days.add("               Choose the day");
+        days.add("Saturday");
+        days.add("Sunday");
+        days.add("Monday");
+        days.add("Tuesday");
+        days.add("Wednesday");
+        days.add("Thursday");
+        days.add("Friday");
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+        search = findViewById(R.id.searchtxt);
         dailyMealPresenterInterface = new DailyMealPresenter(Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(this), this), this, this);
         dailyMealPresenterInterface.getMeal();
-        dailyMealPresenterInterface.getAllMeal();
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length()!=0) {
+                        dailyMealPresenterInterface.getAllMeal(charSequence.toString());
+                }
+                else if (charSequence.length()==0) {
+                    ad2.setList(new ArrayList<>());
+                    ad2.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         recyclerView = findViewById(R.id.recycler_daily);
         rv2 = findViewById(R.id.search_rec);
+
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+
         lm2 = new LinearLayoutManager(this);
         lm2.setOrientation(RecyclerView.VERTICAL);
-        adapter = new DailyMealAdapter(this, this);
-        ad2 = new MealsAdapter(this ,this);
+
+        adapter = new DailyMealAdapter(this, this , days);
+        ad2 = new DailyMealAdapter (this ,this , days);
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
         rv2.setLayoutManager(lm2);
         rv2.setAdapter(ad2);
 
@@ -112,8 +162,6 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
         });
     }
 
-
-
     @Override
     public void showData(ArrayList<Meals> products) {
         adapter.setList(products);
@@ -123,8 +171,16 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
 
     @Override
     public void showallData(ArrayList<Meals> products) {
-        ad2.setList(products);
-        ad2.notifyDataSetChanged();
+        if (products!=null){
+            ad2.setList(products);
+            ad2.notifyDataSetChanged();
+
+        }
+        else {
+            Toast.makeText(this, "No Data Available", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
     @Override
@@ -141,5 +197,12 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
     @Override
     public void onClick(Meals meals) {
         addToFav(meals);
+    }
+
+    @Override
+    public void onClickDetails(String name) {
+        Intent intent = new Intent(this , DetailedMealActivity.class);
+        intent.putExtra("category" , name);
+        startActivity(intent);
     }
 }

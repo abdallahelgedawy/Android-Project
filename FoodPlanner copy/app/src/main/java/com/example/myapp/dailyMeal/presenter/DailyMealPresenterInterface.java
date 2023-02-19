@@ -8,7 +8,7 @@ public interface DailyMealPresenterInterface {
 
    public void addToFav(Meals meals);
     public void getMeal();
-  public void getAllMeal();
+  public void getAllMeal(String s);
   public void showFavData (List<Meals> meals);
  // public void deleteProduct(Meals meals);
 }

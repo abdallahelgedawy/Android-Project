@@ -25,9 +25,6 @@
             android:name=".planMeals.view.planActivity"
             android:exported="false" />
         <activity
-            android:name=".search.searchbycountry.view.Detailed_country"
-            android:exported="false" />
-        <activity
             android:name=".detailedmeal.view.DetailedMealActivity"
             android:exported="false" />
         <activity

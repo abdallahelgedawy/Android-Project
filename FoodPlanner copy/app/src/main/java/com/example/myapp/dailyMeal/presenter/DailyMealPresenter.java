@@ -43,8 +43,8 @@ public class DailyMealPresenter implements DailyMealPresenterInterface , Network
     }
 
     @Override
-    public void getAllMeal() {
-        repo.getAllMeal(this::onpecialResult);
+    public void getAllMeal(String s) {
+        repo.getAllMeal(this ,s );
     }
 
     @Override

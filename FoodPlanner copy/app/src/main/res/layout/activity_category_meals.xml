@@ -13,7 +13,7 @@
         android:layout_height="670dp">
 
         <SearchView
-            android:id="@+id/editText"
+            android:id="@+id/searchtxt"
             android:layout_width="300dp"
             android:layout_height="58dp"
             android:layout_margin="6dp"
@@ -40,7 +40,7 @@
             android:background="@drawable/search_btn"
             android:padding="5dp"
             android:src="@drawable/baseline_arrow_back_ios_24"
-            app:layout_constraintBottom_toBottomOf="@+id/editText"
+            app:layout_constraintBottom_toBottomOf="@+id/searchtxt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.075"
             app:layout_constraintStart_toStartOf="parent" />
@@ -55,7 +55,7 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editText" />
+            app:layout_constraintTop_toBottomOf="@id/searchtxt" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_category"

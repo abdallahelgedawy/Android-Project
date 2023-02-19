@@ -102,6 +102,8 @@ OnClickFavoritCategory listener;
                 img = itemView.findViewById(R.id.img);
                 fav = itemView.findViewById(R.id.fav_cat);
               //  days = itemView.findViewById(R.id.spinner_category);
+
+               // days = itemView.findViewById(R.id.spinner_category);
             }
         }
     }

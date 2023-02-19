@@ -5,8 +5,24 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "meals")
+@Entity(tableName = "meals" , primaryKeys = {"day" , "idMeal"})
 public class Meals {
+    public Meals() {
+    }
+
+
+    @NonNull
+
+    private String day;
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
     public String getStrIngredient() {
         return strIngredient;
     }
@@ -14,16 +30,25 @@ public class Meals {
     public void setStrIngredient(String strIngredient) {
         this.strIngredient = strIngredient;
     }
-
+@Ignore
     private String strIngredient;
+    @Ignore
     private String strIngredient10;
+    @Ignore
     private String strIngredient12;
+    @Ignore
     private String strIngredient11;
+    @Ignore
     private String strIngredient14;
+
     private String strCategory;
+    @Ignore
     private String strIngredient13;
+    @Ignore
     private String strIngredient15;
+
     private String strArea;
+    @Ignore
     private String strTags;
     private String strMeal;
 
@@ -111,7 +136,7 @@ public class Meals {
         this.strTags = strTags;
     }
 
-    @NonNull
+
     public String getIdMeal() {
         return idMeal;
     }
@@ -367,35 +392,61 @@ public class Meals {
         this.strMeasure15 = strMeasure15;
     }
 
-    @PrimaryKey
+
     @NonNull
     private String idMeal;
+    @Ignore
     private String strInstructions;
+    @Ignore
     private String strIngredient1;
+    @Ignore
     private String strIngredient3;
+    @Ignore
     private String strIngredient2;
+    @Ignore
     private String strIngredient5;
+    @Ignore
     private String strIngredient4;
+    @Ignore
     private String strIngredient7;
+    @Ignore
     private String strIngredient6;
+    @Ignore
     private String strIngredient9;
+    @Ignore
     private String strIngredient8;
+
     private String strMealThumb;
+    @Ignore
     private String strYoutube;
+    @Ignore
 
 
     private String strMeasure12;
+    @Ignore
     private String strMeasure13;
+    @Ignore
     private String strMeasure10;
+    @Ignore
     private String strMeasure11;
+    @Ignore
     private String strMeasure9;
+    @Ignore
     private String strMeasure7;
+    @Ignore
     private String strMeasure8;
+    @Ignore
     private String strMeasure5;
+    @Ignore
     private String strMeasure6;
+    @Ignore
     private String strMeasure3;
+    @Ignore
     private String strMeasure4;
+    @Ignore
     private String strMeasure1;
+    @Ignore
     private String strMeasure2;
+    @Ignore
     private String strMeasure15;
 }

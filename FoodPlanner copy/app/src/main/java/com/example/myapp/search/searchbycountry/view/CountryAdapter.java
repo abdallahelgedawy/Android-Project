@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapp.R;
-import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Meals;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -93,7 +92,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
             title = itemView.findViewById(R.id.text_cat);
             img = itemView.findViewById(R.id.img);
             favorite = itemView.findViewById(R.id.fav_cat);
-            days = itemView.findViewById(R.id.spinner);
+        //    days = itemView.findViewById(R.id.plan);
         }
     }
 }

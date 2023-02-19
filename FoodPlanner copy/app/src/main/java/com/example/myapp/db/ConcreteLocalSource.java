@@ -3,10 +3,13 @@ package com.example.myapp.db;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import com.example.myapp.model.Meals;
+
+import java.util.ArrayList;
 import java.util.List;
 import android.util.Log;
 import android.widget.Toast;
 import io.reactivex.CompletableObserver;
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -17,6 +20,8 @@ public class ConcreteLocalSource implements LocalSource {
     private Context context;
     private MealsDao dao;
     private List<Meals> favoritemeal;
+    private List<Meals> mealsaturday;
+
     private static ConcreteLocalSource instance = null;
 
 
@@ -28,6 +33,7 @@ public class ConcreteLocalSource implements LocalSource {
         dao.getMeals().subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe( item ->favoritemeal=item);
+
     }
 
     public static ConcreteLocalSource getInstance(Context context){
@@ -86,5 +92,40 @@ public class ConcreteLocalSource implements LocalSource {
     @Override
     public List<Meals> getFavoriteMeals() {
         return favoritemeal;
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsSaturday() {
+      return dao.getMealsSaturday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsSunday() {
+        return dao.getMealsSunday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsMonday() {
+        return dao.getMealsMonday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsTuesday() {
+        return dao.getMealsTuesday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsWednesday() {
+        return dao.getMealsWednesday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsThursday() {
+        return dao.getMealsThursday();
+    }
+
+    @Override
+    public Observable<List<Meals>> getMealsFriday() {
+        return dao.getMealsFriday();
     }
 }

@@ -5,4 +5,5 @@ import com.example.myapp.model.Meals;
 
 public interface OnClickFavorite {
     void onClick(Meals meals);
+    void onClickDetails(String name);
 }
