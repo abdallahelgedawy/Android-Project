@@ -99,6 +99,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onSuccess(LoginResult loginResult) {
                         Log.d("TAG", "facebook:onSuccess:" + loginResult);
                         handleFacebookAccessToken(loginResult.getAccessToken());
+                        FirebaseUsers.getFavFromFire(RegistrationActivity.this,mAuth.getCurrentUser());
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "1");
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "2");
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "3");
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "4");
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "5");
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "6");
+                        FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "7");
                         startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class));
                         finish();
                     }
