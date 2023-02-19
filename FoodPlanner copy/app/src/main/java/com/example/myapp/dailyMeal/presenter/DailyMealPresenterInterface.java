@@ -10,5 +10,6 @@ public interface DailyMealPresenterInterface {
     public void getMeal();
   public void getAllMeal(String s);
   public void showFavData (List<Meals> meals);
+  public void deleteallMeals();
  // public void deleteProduct(Meals meals);
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +22,7 @@ import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Category;
 import com.example.myapp.model.Meals;
+import com.example.myapp.network.FirebaseUsers;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,15 +34,17 @@ public class CategoryMealsAdapter extends RecyclerView.Adapter<CategoryMealsAdap
        private boolean clicked = false;
     FirebaseAuth auth;
     FirebaseUser user;
+    ArrayList<String> days = new ArrayList<>();
 
 OnClickFavoritCategory listener;
 
-    public CategoryMealsAdapter(Context context ,OnClickFavoritCategory listener ) {
+    public CategoryMealsAdapter(Context context ,OnClickFavoritCategory listener  , ArrayList<String> days) {
             this.context = context;
             this.listener=listener;
             this.meals = new ArrayList<>();
             auth=FirebaseAuth.getInstance();
             user=auth.getCurrentUser();
+        this.days = days;
         }
 
 
@@ -56,6 +62,63 @@ OnClickFavoritCategory listener;
         Meals meal = meals.get(position);
         holder.title.setText(meal.getStrMeal());
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.img);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,days );
+        holder.days.setAdapter(arrayAdapter);
+        holder.days.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                  @Override
+                                                  public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                                      switch (i) {
+                                                          case 1:
+                                                              meal.setDay("1");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+                                                          case 2:
+                                                              meal.setDay("2");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+                                                          case 3:
+                                                              meal.setDay("3");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+                                                          case 4:
+                                                              meal.setDay("4");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+                                                          case 5:
+                                                              meal.setDay("5");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+                                                          case 6:
+                                                              meal.setDay("6");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+                                                          case 7:
+                                                              meal.setDay("7");
+                                                              listener.onClick(meal);
+                                                              FirebaseUsers.addToPlanfire(context , meal);
+                                                              break;
+
+
+                                                      }
+                                                  }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClickDetails(holder.title.getText().toString());
+            }
+        });
         holder.fav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -67,6 +130,9 @@ OnClickFavoritCategory listener;
                     } else if (clicked) {
                         holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
                         clicked = false;
+                        listener.onClick(meal);
+                        FirebaseUsers.addToFavoritefire(context , meal);
+                        meal.setDay("0");
                     }
                 }else{
                     Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();
@@ -94,16 +160,16 @@ OnClickFavoritCategory listener;
             TextView title;
             ImageView img;
             ToggleButton fav;
-          //  Spinner days;
+            Spinner days;
+            CardView card;
 
             public viewHolder(@NonNull View itemView) {
                 super(itemView);
                 title = itemView.findViewById(R.id.text_cat);
                 img = itemView.findViewById(R.id.img);
                 fav = itemView.findViewById(R.id.fav_cat);
-              //  days = itemView.findViewById(R.id.spinner_category);
-
-               // days = itemView.findViewById(R.id.spinner_category);
+                days = itemView.findViewById(R.id.plan);
+                card = itemView.findViewById(R.id.card);
             }
         }
     }

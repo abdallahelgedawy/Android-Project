@@ -53,6 +53,10 @@ public class DailyMealPresenter implements DailyMealPresenterInterface , Network
 
     }
 
+    @Override
+    public void deleteallMeals() {
+        repo.deleteAllmeals();
+    }
 
 
     @Override

@@ -22,6 +22,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.example.myapp.network.FirebaseUsers;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -81,33 +82,38 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
                     case 1:
                         meal.setDay("1");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
                     case 2:
                         meal.setDay("2");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
                     case 3:
                         meal.setDay("3");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
                     case 4:
                         meal.setDay("4");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
                     case 5:
                         meal.setDay("5");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
                     case 6:
                         meal.setDay("6");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
                     case 7:
                         meal.setDay("7");
                         listener.onClick(meal);
+                        FirebaseUsers.addToPlanfire(context , meal);
                         break;
-
-
                 }
             }
 
@@ -127,6 +133,7 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
                     }  if (clicked) {
                         meal.setDay("0");
                         listener.onClick(meal);
+                        FirebaseUsers.addToFavoritefire(context , meal);
                         clicked = false;
 
                     } else {

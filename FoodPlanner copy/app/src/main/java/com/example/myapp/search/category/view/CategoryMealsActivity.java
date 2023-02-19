@@ -39,19 +39,28 @@ public class CategoryMealsActivity extends AppCompatActivity implements Category
     ImageView arrow;
 
     FirebaseAuth firebaseAuth;
+    private ArrayList<String> days = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_meals);
         recyclerView = findViewById(R.id.recycler_category);
+        days.add("               Choose the day");
+        days.add("               Saturday");
+        days.add("              Sunday");
+        days.add( "             Monday");
+        days.add("             Tuesday");
+        days.add("             Wednesday");
+        days.add("             Thursday");
+        days.add("             Friday");
         arrow=findViewById(R.id.arrow);
         categoryMealsPresenterInterface = new CategoryMealsPresenter(Repository.getInstance(MealsClient.getInstance() , ConcreteLocalSource.getInstance(this),this ), this, this);
         String category = getIntent().getStringExtra("category");
         Log.i("milad", "onCreate: " + category);
         categoryMealsPresenterInterface.getCategoryName(category);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new CategoryMealsAdapter(this,this);
+        adapter = new CategoryMealsAdapter(this,this , days);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -85,5 +94,12 @@ public class CategoryMealsActivity extends AppCompatActivity implements Category
     @Override
     public void onClick(Meals meals) {
        addToFAv(meals);
+    }
+
+    @Override
+    public void onClickDetails(String name) {
+        Intent intent = new Intent(this , DetailedMealActivity.class);
+        intent.putExtra("category" , name);
+        startActivity(intent);
     }
 }

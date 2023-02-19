@@ -23,4 +23,5 @@ public interface LocalSource {
     public Observable<List<Meals>> getMealsWednesday();
     public Observable<List<Meals>> getMealsThursday();
     public Observable<List<Meals>> getMealsFriday();
+    public void deleteAllmeals();
 }

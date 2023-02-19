@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:fontFamily="@font/lobster"
-            android:text="Countries"
+            android:text="Categories"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"

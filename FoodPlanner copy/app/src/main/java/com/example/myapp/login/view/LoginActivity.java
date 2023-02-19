@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
+import com.example.myapp.network.FirebaseUsers;
 import com.example.myapp.registration.view.RegistrationActivity;
 import com.example.myapp.search.byIngredients.view.IngredientsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -168,6 +169,14 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUsers.getFavFromFire(LoginActivity.this,user);
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "1");
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "2");
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "3");
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "4");
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "5");
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "6");
+                            FirebaseUsers.getPlanFromFire(LoginActivity.this , user , "7");
                             startActivity(new Intent(LoginActivity.this, DailyMealActivity.class));
                             finish();
                         } else {

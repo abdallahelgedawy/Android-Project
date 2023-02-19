@@ -13,6 +13,7 @@ import android.widget.SearchView;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
 import com.example.myapp.db.ConcreteLocalSource;
+import com.example.myapp.detailedmeal.view.DetailedMealActivity;
 import com.example.myapp.login.view.LoginActivity;
 import com.example.myapp.model.Meals;
 import com.example.myapp.model.Repository;
@@ -33,17 +34,26 @@ public class Search_by_ingredients_Activity extends AppCompatActivity implements
     ImageView arrow;
 
     FirebaseAuth firebaseAuth;
+    private ArrayList<String> days = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitysearchbyingredients);
+        days.add("               Choose the day");
+        days.add("               Saturday");
+        days.add("              Sunday");
+        days.add( "             Monday");
+        days.add("             Tuesday");
+        days.add("             Wednesday");
+        days.add("             Thursday");
+        days.add("             Friday");
         recyclerView = findViewById(R.id.recycler_ing);
         arrow=findViewById(R.id.arrow);
         searchbyingPresenterInterface = new SearchbyingPresenter(Repository.getInstance(MealsClient.getInstance() , ConcreteLocalSource.getInstance(this),this ), this, this);
         String ing = getIntent().getStringExtra("ingredient");
         searchbyingPresenterInterface.getIngName(ing);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new Search_by_ingredients_Adapter(this,this);
+        adapter = new Search_by_ingredients_Adapter(this,this , days);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -75,5 +85,12 @@ public class Search_by_ingredients_Activity extends AppCompatActivity implements
     @Override
     public void onClick(Meals meals) {
         addToFAv(meals);
+    }
+
+    @Override
+    public void onClickDetails(String name) {
+        Intent intent = new Intent(this , DetailedMealActivity.class);
+        intent.putExtra("category" , name);
+        startActivity(intent);
     }
 }

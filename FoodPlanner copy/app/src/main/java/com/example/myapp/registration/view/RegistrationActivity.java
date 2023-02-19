@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
 import com.example.myapp.login.view.LoginActivity;
+import com.example.myapp.network.FirebaseUsers;
 import com.facebook.FacebookSdk;
 import com.facebook.LoggingBehavior;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -155,7 +156,7 @@ public class RegistrationActivity extends AppCompatActivity {
         google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signinIntent=mGoogleSignInClient.getSignInIntent();
+               Intent signinIntent=mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signinIntent,RC_SIGN_IN);
             }
         });
@@ -180,6 +181,14 @@ public class RegistrationActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    FirebaseUsers.getFavFromFire(RegistrationActivity.this,mAuth.getCurrentUser());
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "1");
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "2");
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "3");
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "4");
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "5");
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "6");
+                                    FirebaseUsers.getPlanFromFire(RegistrationActivity.this , mAuth.getCurrentUser() , "7");
                                     startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 } else {
                                     Toast.makeText(RegistrationActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
@@ -204,6 +213,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+
                             updateUI(user);
 
                         } else {
@@ -264,9 +274,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
     }
-
 }
-
 
 
 

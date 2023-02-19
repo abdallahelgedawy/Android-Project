@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Meals;
+import com.example.myapp.network.FirebaseUsers;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -58,6 +59,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHo
             @Override
             public void onClick(View view) {
                 listener.onClick(meal);
+                FirebaseUsers.removeFavFromFirebase(context , meal);
             }
         });
 

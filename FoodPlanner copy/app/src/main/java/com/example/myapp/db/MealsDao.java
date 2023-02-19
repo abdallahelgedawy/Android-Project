@@ -37,6 +37,8 @@ public interface MealsDao {
         Completable insertProduct (Meals meals);
         @Delete
         Completable deleteProduct (Meals meals);
+        @Query("DELETE FROM meals")
+        Completable deleteAllMeals();
 
         
     }

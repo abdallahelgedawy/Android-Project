@@ -126,5 +126,10 @@ public class Repository implements RepositoryInterface  {
         return localSource.getMealsFriday();
     }
 
+    @Override
+    public void deleteAllmeals() {
+        localSource.deleteAllmeals();
+    }
+
 }
 

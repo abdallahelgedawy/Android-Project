@@ -34,11 +34,20 @@ public class Search_by_country_Activity extends AppCompatActivity implements Cou
     CountryMealPresenterInterface countryMealPresenterInterface;
     ImageView arrow;
     FirebaseAuth firebaseAuth;
+    private ArrayList<String> days = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_by_country);
+        days.add("               Choose the day");
+        days.add("               Saturday");
+        days.add("              Sunday");
+        days.add( "             Monday");
+        days.add("             Tuesday");
+        days.add("             Wednesday");
+        days.add("             Thursday");
+        days.add("             Friday");
 
         recyclerView = findViewById(R.id.country_rec);
         arrow=findViewById(R.id.arrow);
@@ -48,7 +57,7 @@ public class Search_by_country_Activity extends AppCompatActivity implements Cou
         countryMealPresenterInterface.getCountryMeal(country);
 
         layoutManager = new LinearLayoutManager(this);
-        adapter = new CountryAdapter(this,this);
+        adapter = new CountryAdapter(this,this , days);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -81,5 +90,11 @@ public class Search_by_country_Activity extends AppCompatActivity implements Cou
        addToFav(meals);
     }
 
+    @Override
+    public void onClickdetails(String name) {
+        Intent intent = new Intent(this , DetailedMealActivity.class);
+        intent.putExtra("category" , name);
+        startActivity(intent);
+    }
+    }
 
-}
