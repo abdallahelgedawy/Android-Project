@@ -19,12 +19,14 @@ app:cardElevation="50dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:scaleType="center"
-            android:src="@drawable/coffe">
+            android:src="@drawable/coffe"
+            app:cardCornerRadius="20dp">
 
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 

@@ -4,15 +4,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/mediamgray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:minWidth="48dp"
-        android:minHeight="48dp">
+        android:minHeight="48dp"
+        android:background="@color/mediamgray">
+
+
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:background="@drawable/baseline_favorite_24"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="2dp"
+            app:cardCornerRadius="40dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ToggleButton
+                android:id="@+id/btn_fav"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/baseline_favorite_24"
+                android:textOff="@null"
+                android:textOn="@null" />
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="384dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+
+
+        </androidx.cardview.widget.CardView>
 
 
         <TextView
@@ -20,18 +58,23 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/lobster"
             android:text="TextView"
+            android:textColor="#831111"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img" />
+            app:layout_constraintTop_toBottomOf="@+id/layout" />
 
         <TextView
             android:id="@+id/steps"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="36dp"
             android:text="TextView"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/desc" />
 
@@ -39,41 +82,21 @@
             android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="28dp"
             android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country" />
-
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="wrap_content"
-            android:layout_height="91dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <ToggleButton
-            android:id="@+id/btn_fav"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="236dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/baseline_favorite_24"
-            android:textOff="@null"
-            android:textOn="@null"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_details"
-            android:layout_width="match_parent"
-            android:layout_height="216dp"
-            android:layout_marginTop="36dp"
+            android:layout_width="377dp"
+            android:layout_height="179dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/steps"
             tools:listitem="@layout/details" />
@@ -83,21 +106,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/ybv"
-            android:layout_width="408dp"
-            android:layout_height="180dp"
+            android:layout_width="413dp"
+            android:layout_height="228dp"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="435dp"
+            android:layout_marginTop="28dp"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycle_details"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            app:layout_constraintTop_toBottomOf="@+id/recycle_details" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

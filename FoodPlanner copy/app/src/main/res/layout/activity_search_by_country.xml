@@ -8,66 +8,49 @@ android:background="@color/mediamgray"
 android:orientation="vertical"
 tools:context=".search.searchbycountry.view.Search_by_country_Activity">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="670dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <SearchView
-        android:id="@+id/searchtxt"
-        android:layout_width="300dp"
-        android:layout_height="58dp"
-        android:layout_margin="6dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/search_btn"
-        android:drawableRight="@drawable/baseline_search_24"
-        android:drawablePadding="9dp"
-        android:fontFamily="@font/amita_bold"
-        android:hint="@string/search"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.855"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/search_btn"
+            android:padding="5dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.079"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/search_btn"
-        android:padding="5dp"
-        android:src="@drawable/baseline_arrow_back_ios_24"
-        app:layout_constraintBottom_toBottomOf="@+id/searchtxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/hellotext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:fontFamily="@font/lobster"
+            android:text="Countries"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrow" />
 
-    <TextView
-        android:id="@+id/hellotext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:fontFamily="@font/lobster"
-        android:text="Countries"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchtxt" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/country_rec"
-        android:layout_width="392dp"
-        android:layout_height="549dp"
-        android:layout_margin="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hellotext" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/country_rec"
+            android:layout_width="377dp"
+            android:layout_height="618dp"
+            android:layout_margin="6dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hellotext" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

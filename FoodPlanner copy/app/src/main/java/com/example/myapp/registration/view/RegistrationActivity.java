@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.DailyMealActivity;
+import com.example.myapp.dailyMeal.view.DailyMealAdapter;
 import com.example.myapp.login.view.LoginActivity;
 import com.example.myapp.network.FirebaseUsers;
 import com.facebook.FacebookSdk;
@@ -80,6 +81,8 @@ public class RegistrationActivity extends AppCompatActivity {
         login=findViewById(R.id.tv_signin);
         google=findViewById(R.id.google);
         loginButton=findViewById(R.id.facebook);
+        createResult();
+
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
@@ -90,35 +93,33 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logInWithReadPermissions(RegistrationActivity.this, Arrays.asList("public_profile"));
-              //  callbackManager = CallbackManager.Factory.create();
+             //  callbackManager = CallbackManager.Factory.create();
+                LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Log.d("TAG", "facebook:onSuccess:" + loginResult);
+                        handleFacebookAccessToken(loginResult.getAccessToken());
+                        startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class));
+                        finish();
+                    }
+                    @Override
+                    public void onCancel() {
+                        Log.d("TAG", "facebook:onCancel");
+                    }
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d("TAG", "facebook:onError");
+                    }
+                });
 
             }
+
         });
 
-      //  LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-     callbackManager = CallbackManager.Factory.create();
+        callbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d("TAG", "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-                startActivity(new Intent(RegistrationActivity.this, DailyMealActivity.class));
-                finish();
-            }
-            @Override
-            public void onCancel() {
-                Log.d("TAG", "facebook:onCancel");
-            }
-            @Override
-            public void onError(FacebookException exception) {
-                Log.d("TAG", "facebook:onError");
-            }
-        });
-//Google signin
-        GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
-        mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
+
+
 //signInstance
         mAuth = FirebaseAuth.getInstance();
 
@@ -156,7 +157,7 @@ public class RegistrationActivity extends AppCompatActivity {
         google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent signinIntent=mGoogleSignInClient.getSignInIntent();
+                Intent signinIntent=mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signinIntent,RC_SIGN_IN);
             }
         });
@@ -164,6 +165,13 @@ public class RegistrationActivity extends AppCompatActivity {
         if (firebaseUser != null) {
             startActivity(new Intent(this, DailyMealActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
+    }
+
+    public void createResult(){
+        GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
+
     }
     //Activity Google>>>>>>>>>>>>>>>>>>Google
     @Override
@@ -213,7 +221,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-
                             updateUI(user);
 
                         } else {
@@ -226,6 +233,11 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        if(user !=null){
+
+            user.getEmail();
+           // mAuth = FirebaseAuth.getInstance().
+        }
 
     }
 
@@ -273,8 +285,13 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
+        updateUI(user);
+
     }
+
+
 }
+
 
 
 

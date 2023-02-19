@@ -59,6 +59,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.viewHo
             @Override
             public void onClick(View view) {
                 listener.onClick(meal);
+                meals.remove(position);
+                notifyDataSetChanged();
                 FirebaseUsers.removeFavFromFirebase(context , meal);
             }
         });

@@ -10,5 +10,6 @@
         android:id="@+id/tc_Day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="day" />
+        android:text="day"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

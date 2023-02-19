@@ -50,7 +50,6 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
         this.days = days;
-
     }
 
     @NonNull

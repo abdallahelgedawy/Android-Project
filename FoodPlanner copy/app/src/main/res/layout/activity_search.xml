@@ -103,7 +103,7 @@
             <ImageView
                 android:id="@+id/btn_ingredients"
                 android:layout_width="match_parent"
-                android:layout_height="222dp"
+                android:layout_height="225dp"
                 android:foreground="@drawable/foreground_design"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ingradient" />
@@ -129,18 +129,19 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:pointerIcon="cell"
-            app:itemBackground="@color/purple_700"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
-            app:menu="@menu/bottom_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
     </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:pointerIcon="cell"
+        app:itemBackground="@color/purple_700"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </LinearLayout>

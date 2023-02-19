@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String useremail=email.getText().toString().trim();
                 beginRecovery(useremail);
-
             }
         });
 
