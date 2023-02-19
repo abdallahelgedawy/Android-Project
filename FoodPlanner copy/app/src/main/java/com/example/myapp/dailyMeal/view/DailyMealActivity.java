@@ -28,6 +28,7 @@ import com.example.myapp.favorite.view.Favorite_itemsActivity;
 import com.example.myapp.login.view.LoginActivity;
 import com.example.myapp.model.Repository;
 import com.example.myapp.model.Meals;
+import com.example.myapp.network.CheckInternetConnection;
 import com.example.myapp.network.MealsClient;
 import com.example.myapp.registration.view.RegistrationActivity;
 import com.example.myapp.search.view.SearchActivity;
@@ -60,6 +61,9 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
 
     ImageView arrow;
 
+    FirebaseUser user;
+    ImageView net;
+
 
     FirebaseAuth firebaseAuth;
 
@@ -78,11 +82,14 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
         days.add("Friday");
 
         firebaseAuth = FirebaseAuth.getInstance();
+     user=firebaseAuth.getCurrentUser();
+
+     net=findViewById(R.id.notconnect);
 
 
         search = findViewById(R.id.searchtxt);
         dailyMealPresenterInterface = new DailyMealPresenter(Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(this), this), this, this);
-        dailyMealPresenterInterface.getMeal();
+       // dailyMealPresenterInterface.getMeal();
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -127,6 +134,7 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
         rv2.setAdapter(ad2);
 
         arrow=findViewById(R.id.arrow);
+        CheckInternet();
 
         arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,11 +159,20 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
                         startActivity(new Intent(getApplicationContext(), SearchActivity.class));
                         return true;
                     case R.id.saved:
-                        startActivity(new Intent(getApplicationContext(), Favorite_itemsActivity.class));
-                        return true;
+                        if(user != null){
+                            startActivity(new Intent(getApplicationContext(), Favorite_itemsActivity.class));
+                            return true;
+                        }else{
+                            Toast.makeText(DailyMealActivity.this, "You Must Login", Toast.LENGTH_SHORT).show();
+                        }
+
                     case R.id.planed:
-                        startActivity(new Intent(getApplicationContext(), com.example.myapp.planMeals.view.planActivity.class));
-                        return true;
+                        if(user!= null){
+                            startActivity(new Intent(getApplicationContext(), com.example.myapp.planMeals.view.planActivity.class));
+                            return true;
+                        }else {
+                            Toast.makeText(DailyMealActivity.this, "You Must Login", Toast.LENGTH_SHORT).show();
+                        }
                 }
                 return false;
             }
@@ -204,5 +221,19 @@ public class DailyMealActivity extends AppCompatActivity implements  DailyMealsV
         Intent intent = new Intent(this , DetailedMealActivity.class);
         intent.putExtra("category" , name);
         startActivity(intent);
+    }
+
+
+
+    public void CheckInternet(){
+        if (!CheckInternetConnection.getConnectivity(DailyMealActivity.this )){
+            Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+            net.setVisibility(View.VISIBLE);
+        }
+        else {
+            dailyMealPresenterInterface.getMeal();
+            net.setVisibility(View.GONE);
+        }
+
     }
 }

@@ -31,15 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-            <ToggleButton
-                android:id="@+id/btn_fav"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="300dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/baseline_favorite_24"
-                android:textOff="@null"
-                android:textOn="@null" />
+
 
             <ImageView
                 android:id="@+id/img"

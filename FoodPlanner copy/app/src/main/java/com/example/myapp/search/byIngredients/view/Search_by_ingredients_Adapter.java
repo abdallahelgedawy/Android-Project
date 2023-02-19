@@ -123,13 +123,11 @@ public class Search_by_ingredients_Adapter extends RecyclerView.Adapter<Search_b
                    listener.onClick(meal);
                     if (!clicked) {
                         holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
-                        clicked = true;
-                    } else if (clicked) {
-                        holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
-                        clicked = false;
                         meal.setDay("0");
                         listener.onClick(meal);
                         FirebaseUsers.addToFavoritefire(context , meal);
+                        Toast.makeText(context.getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
+                        clicked = true;
                     }
                 }else{
                     Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();

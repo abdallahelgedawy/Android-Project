@@ -66,7 +66,8 @@
                 android:background="@drawable/baseline_favorite_24"
                 android:textOff="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textOn="@null"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

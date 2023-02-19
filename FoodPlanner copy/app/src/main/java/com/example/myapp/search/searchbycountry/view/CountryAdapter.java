@@ -118,15 +118,11 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.viewHold
                 if (user != null) {
                     listener.onClick(meal);
                     if (!clicked) {
-
                         holder.favorite.setBackgroundResource(R.drawable.baseline_red_24);
-                        clicked = true;
-                    } else if (clicked) {
                         meal.setDay("0");
                         listener.onClick(meal);
                         FirebaseUsers.addToFavoritefire(context , meal);
-                        holder.favorite.setBackgroundResource(R.drawable.baseline_favorite_24);
-                        clicked = false;
+                        clicked = true;
                     }
                 }else{
                     Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();

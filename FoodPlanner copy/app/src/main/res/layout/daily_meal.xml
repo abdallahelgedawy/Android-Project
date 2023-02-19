@@ -12,6 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="670dp">
 
+
+        <ImageView
+            android:id="@+id/notconnect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/nonet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/searchtxt"
             android:layout_width="300dp"
@@ -92,6 +102,8 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

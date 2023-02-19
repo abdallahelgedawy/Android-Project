@@ -72,7 +72,7 @@ public class ConcreteLocalSource implements LocalSource {
         dao.insertProduct(meals).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {
-                Toast.makeText(context.getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

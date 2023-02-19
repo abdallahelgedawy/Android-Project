@@ -65,6 +65,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/baseline_favorite_24"
                     android:textOff="@null"
+                    android:textOn="@null"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

@@ -123,16 +123,13 @@ OnClickFavoritCategory listener;
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (user != null) {
-                    listener.onClick(meal);
+                     listener.onClick(meal);
                     if (!clicked) {
                         holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
                         clicked = true;
-                    } else if (clicked) {
-                        holder.fav.setBackgroundResource(R.drawable.baseline_favorite_24);
-                        clicked = false;
+                        meal.setDay("0");
                         listener.onClick(meal);
                         FirebaseUsers.addToFavoritefire(context , meal);
-                        meal.setDay("0");
                     }
                 }else{
                     Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();

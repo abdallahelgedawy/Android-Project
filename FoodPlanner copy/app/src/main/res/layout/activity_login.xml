@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-570dp"
         android:fontFamily="sans-serif"
-        android:text="@string/Signuphreader"
+        android:text="Login"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"

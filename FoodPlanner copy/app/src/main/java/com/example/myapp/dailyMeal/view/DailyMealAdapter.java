@@ -39,10 +39,6 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
     ArrayList<String> days = new ArrayList<>();
 
 
-
-
-
-
     public DailyMealAdapter(Context context ,OnClickFavorite listener , ArrayList<String> days) {
         this.context = context;
         this.listener=listener;
@@ -128,24 +124,20 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
                     listener.onClick(meal);
                     if (!clicked) {
                         holder.fav.setBackgroundResource(R.drawable.baseline_red_24);
-                        clicked = true;
-                    }  if (clicked) {
                         meal.setDay("0");
                         listener.onClick(meal);
                         FirebaseUsers.addToFavoritefire(context , meal);
-                        clicked = false;
 
-                    } else {
-                        Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context.getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
+                        clicked = true;
                     }
-
+                    }else {
+                    Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
     }
-
-
 
     @Override
     public int getItemCount() {

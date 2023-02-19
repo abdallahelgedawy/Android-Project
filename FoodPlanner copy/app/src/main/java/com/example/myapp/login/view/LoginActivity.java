@@ -110,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
         emailEt.setHint("Email");
         emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         emailEt.setMinEms(16);
-
         linearLayout.addView(emailEt);
         linearLayout.setPadding(10,10,10,10);
         builder.setView(linearLayout);
@@ -118,8 +117,8 @@ public class LoginActivity extends AppCompatActivity {
         builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String useremail=email.getText().toString().trim();
-                beginRecovery(useremail);
+               String mayada=emailEt.getText().toString().trim();
+                beginRecovery(mayada);
             }
         });
 
