@@ -127,9 +127,8 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.view
                         meal.setDay("0");
                         listener.onClick(meal);
                         FirebaseUsers.addToFavoritefire(context , meal);
-
                         Toast.makeText(context.getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
-                        clicked = true;
+                       // clicked = true;
                     }
                     }else {
                     Toast.makeText(context, "You Must Login", Toast.LENGTH_SHORT).show();

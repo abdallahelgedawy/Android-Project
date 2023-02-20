@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.myapp.R;
 import com.example.myapp.dailyMeal.view.OnClickFavorite;
 import com.example.myapp.model.Meals;
+import com.example.myapp.network.FirebaseUsers;
 
 
 import java.util.List;
@@ -56,6 +57,7 @@ public class planAdapter extends RecyclerView.Adapter<planAdapter.viewHolder> {
             public void onClick(View view) {
                 listener.onClick(meal);
                 meals.remove(position);
+                FirebaseUsers.removePlanFromFirebase(context,meal);
                 notifyDataSetChanged();
             }
         });
